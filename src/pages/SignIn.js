@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 import axios from "axios";
 import './SignIn.css';
@@ -8,15 +9,15 @@ import './SignIn.css';
 
 function SignIn() {
 
-    const {logIn} = useContext(AuthContext);
+    const {isAuth, logIn} = useContext(AuthContext);
     const { handleSubmit, register } = useForm();
+    const history = useHistory();
 
 
     async  function postData(data) {
 
            try {
                const result = await axios.post('http://localhost:8080/api/v1/auth/signin',data,
-               // const result = await axios.post('http://localhost:3000/login',data,
                    {headers: {'Content-Type':'application/json'}
                    });
                console.log(result.data);
@@ -31,11 +32,14 @@ function SignIn() {
                    console.log(error.response.headers);
                } else if (error.request) {
                    console.log(error.request);
+                   alert("geen verbinding met de server mogelijk");
                } else {
                    console.log('Error', error.message);
+                   alert(error.message);
                }
                console.log(error.config);
                console.log("error");
+
            }
 
        }
@@ -48,9 +52,14 @@ function SignIn() {
 
 
   return (
+
+
     <>
-      <h1>Inloggen</h1>
-              <form className="loginform" onSubmit={handleSubmit(onSubmit)}>
+        {isAuth ? history.push('/buckets')  :
+        <div>
+
+            <h1>Inloggen</h1>
+            <form className="loginform" onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="details-username">
                     loginnaam
                     <input
@@ -69,13 +78,18 @@ function SignIn() {
                     />
                 </label>
 
-            <button type="submit"
-            >
-                Inloggen
-            </button>
-        </form>
-        <p>Heb je nog geen account? Vraag dit dan eerst <Link to="/signup">hier</Link> aan</p>
+                <button type="submit"
+                >
+                    Inloggen
+                </button>
+            </form>
+            <p>Heb je nog geen account? Vraag dit dan eerst <Link to="/signup">hier</Link> aan</p>
+
+        </div>
+        }
     </>
+
+
   );
 }
 

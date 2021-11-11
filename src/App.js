@@ -40,7 +40,7 @@ function App() {
             <PrivateRoute path="/orderItem/:item" isAuth={isAuth}>
               <OrderItemDetails />
             </PrivateRoute>
-            <Route exact path="/signin">
+            <Route exact path="/signin" >
               <SignIn />
             </Route>
             <Route exact path="/signup">

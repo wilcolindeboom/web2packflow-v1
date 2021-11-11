@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {ReactComponent as Logo} from '../assets/logo.svg';
 import { useHistory, Link, useLocation} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
@@ -9,7 +9,14 @@ function NavBar() {
   const history = useHistory();
   const {isAuth, logOff} = useContext(AuthContext);
     const page = useLocation().pathname;
-    const id = page.substr(1, page.length-1);
+    const [id,setId] = useState(page.substr(1, page.length-1));
+
+
+
+    // useEffect( () => {
+    //     setId(id);
+    //
+    // },[id]);
 
 
   function handleLogOff() {
