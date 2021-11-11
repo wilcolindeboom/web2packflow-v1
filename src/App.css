@@ -1,34 +1,76 @@
-.App {
-  text-align: center;
+/*In dit voorbeeld staat alle CSS in één bestand, dit wil je eigenlijk nooit.
+Om de het begrijpen van de bestaande code zo eenvoudig mogelijk te maken,
+is het voor deze opdracht wel gedaan!*/
+
+
+
+:root {
+  --main-bg-color: #e5cfc8;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/*Algemene button styling*/
+button {
+  border-radius: 4px;
+  border: none;
+  /*color: white;*/
+  padding: 8px 16px;
+  background-color: #32b5e1;
   color: white;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+/*Zorgt ervoor dat als twee buttons naast elkaar staan, er altijd ruimte tussen blijft*/
+button + button {
+  margin-left: 8px;
 }
 
-@keyframes App-logo-spin {
+
+button  {
+  border-radius: 15px;
+  margin: 10px;
+}
+
+button:hover {
+  color: #0b2855;
+  cursor: pointer;
+}
+
+h2 {
+  margin: 32px 0 24px 0;
+}
+
+.content {
+  margin: 32px;
+}
+
+.form-button {
+  width: 100%;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user h5 {
+  margin-right: 8px;
+}
+
+section  {
+  margin: 0 0 50px 0;
+}
+
+/*Zet mij op een element en ik blijf voor altijd draaien!*/
+.loading-icon {
+  width: 16px;
+  height: 16px;
+  animation: rotating 1.5s linear infinite;
+}
+
+@keyframes rotating {
   from {
     transform: rotate(0deg);
   }

@@ -1,0 +1,20 @@
+
+.loginform {
+    display: flex;
+    flex-direction: column;
+    background-color: #e5cfc8;
+    padding: 32px;
+    max-width: 300px;
+    border-radius: 4px;
+}
+
+.loginform label {
+    margin: 4px 0;
+    font-weight: bold;
+}
+
+.loginform input {
+    width: 100%;
+    padding: 4px 8px;
+    margin: 6px 0;
+}

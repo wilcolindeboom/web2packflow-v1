@@ -1,0 +1,75 @@
+
+
+/*MOBIELE GRID*/
+@media screen and (max-width: 576px) {
+    .buckets-container  {
+        border-radius: 5px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px 50px auto;
+        grid-template-areas:
+                "left"
+                "header"
+                "content";
+    }
+}
+
+/*DESKTOP GRID*/
+.buckets-container {
+    background-color: var(--main-bg-color);
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    color: #0b2855;
+    /*max-height: 200px;*/
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 30px auto;
+    grid-template-areas:
+            "left header"
+            "left content";
+}
+
+#left {
+    background-color:#e5cfc8;
+    font-size: 24px;
+    grid-area: left;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#header {
+    background-color: #32b5e1;
+    grid-area: header;
+}
+
+#content {
+    background-color: #d4dbe9;
+    grid-area: content;
+}
+
+
+
+.batch-attributes,
+.header {
+    padding: 5px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#order-line:hover{
+    color: red;
+    font-style: oblique;
+    cursor: pointer;
+}
+
+.product-group {
+    font-size: 85%;
+    text-decoration: underline;
+    margin: 5px;
+}

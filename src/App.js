@@ -1,24 +1,54 @@
-import logo from './logo.svg';
+import React, {useContext} from 'react';
+import { Switch, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Profile from './pages/Profile';
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import './App.css';
+import PrivateRoute from "./components/PrivateRoute";
+import {AuthContext} from './context/AuthContext';
+import BucketsOUD from "./pages/Buckets";
+import Batches from "./pages/Batches";
+import Orders from "./pages/Orders";
+import OrderItemDetails from "./pages/OrderItemDetails";
 
 function App() {
+  const {isAuth} = useContext(AuthContext);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+        <NavBar />
+        <div className="content">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <PrivateRoute path="/profile" isAuth={isAuth}>
+              <Profile />
+            </PrivateRoute>
+            <PrivateRoute path="/buckets" isAuth={isAuth}>
+              <BucketsOUD />
+            </PrivateRoute>
+            <PrivateRoute path="/batches" isAuth={isAuth}>
+              <Batches />
+            </PrivateRoute>
+            <PrivateRoute path="/orders" isAuth={isAuth}>
+              <Orders />
+            </PrivateRoute>
+            <PrivateRoute path="/orderItem/:item" isAuth={isAuth}>
+              <OrderItemDetails />
+            </PrivateRoute>
+            <Route exact path="/signin">
+              <SignIn />
+            </Route>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
+          </Switch>
+        </div>
+      </>
   );
 }
 
