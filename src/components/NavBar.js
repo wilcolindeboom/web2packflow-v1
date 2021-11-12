@@ -9,10 +9,11 @@ function NavBar() {
   const history = useHistory();
   const {isAuth, logOff} = useContext(AuthContext);
     const page = useLocation().pathname;
-    const [id,setId] = useState(page.substr(1, page.length-1));
+    // const [id,setId] = useState(page.substr(1, page.length-1));
 
+    const id = page.substr(1, page.length-1);
 
-
+    //
     // useEffect( () => {
     //     setId(id);
     //

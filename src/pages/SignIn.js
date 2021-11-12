@@ -56,7 +56,7 @@ function SignIn() {
 
     <>
         {isAuth ? history.push('/buckets')  :
-        <div>
+        <div className="login-container">
 
             <h1>Inloggen</h1>
             <form className="loginform" onSubmit={handleSubmit(onSubmit)}>
@@ -83,7 +83,7 @@ function SignIn() {
                     Inloggen
                 </button>
             </form>
-            <p>Heb je nog geen account? Vraag dit dan eerst <Link to="/signup">hier</Link> aan</p>
+            <p>Heb je nog geen account? Neem dan contact op met de beheerder</p>
 
         </div>
         }

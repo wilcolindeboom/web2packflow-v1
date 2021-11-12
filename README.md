@@ -5,9 +5,9 @@
 Deze applicatie is gemaakt in opdracht van Drukkerij Eshuis in het kader van de leerlijn Frontend van Hogeschool NOVI
 Met deze applicatie kunnen orders geplaatsts via een webshop, in 'buckets' verzameld worden
 en vervolgens als 'batches' doorgezet worden naar productie.
-De orders komen uit een webshop die geïntergreerd is met de [corporate website](https://www.eshuis.nl/etiketten-op-rol.html).
+De orders komen uit een webshop die geïntegreerd is met de [corporate website](https://www.eshuis.nl/etiketten-op-rol.html).
 
-![screenshot](src/assets/screenshot-website.png)
+![screenshot](src/assets/screenshot-applicatie.png)
 
 ## Applicatie starten
 
