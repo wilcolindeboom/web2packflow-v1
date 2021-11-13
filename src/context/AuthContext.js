@@ -61,8 +61,8 @@ function AuthContextProvider({children}) {
 
         async  function loginUser(JWT,id) {
 
-            console.log("token:" + JWT);
-            console.log("id:" + id);
+            // console.log("token:" + JWT);
+            // console.log("id:" + id);
 
             try {
                 const result = await axios.get(`http://localhost:8080/api/v1/users/${id}`,
@@ -75,9 +75,11 @@ function AuthContextProvider({children}) {
                     user: {
                         email: result.data.email,
                         username: result.data.username,
+                        roles: result.data.roles,
                         id: result.data.id
                     },
                     });
+                console.log(`userdata: ${result.data}`);
                 history.push('/buckets');
             }
             catch (error) {
@@ -100,9 +102,13 @@ function AuthContextProvider({children}) {
         }
     }
 
+    console.log(`username: ${isAuth.user.username}`);
+
     const authData = {
         isAuth: isAuth.isAuth,
         logOff:logOff,
+        roles: isAuth.user.roles,
+        userName: isAuth.user.username,
         logIn:logIn
     };
 
@@ -110,12 +116,11 @@ function AuthContextProvider({children}) {
 
     async  function getUserData(JWT,id) {
 
-        console.log("token:" + JWT);
-        console.log("id:" + id);
+        // console.log("token:" + JWT);
+        // console.log("id:" + id);
 
         try {
             const result = await axios.get(`http://localhost:8080/api/v1/users/${id}`,
-            // const result = await axios.get(`http://localhost:3000/600/users/${id}`,
                 {headers: {'Authorization': `Bearer ${JWT}`}
                 });
             toggleIsAuth({
@@ -124,11 +129,12 @@ function AuthContextProvider({children}) {
                 user: {
                     email: result.data.email,
                     username: result.data.username,
+                    roles: result.data.roles,
                     id: result.data.id
                 },
                status: 'done'
             });
-
+            // console.log(`userdata: ${result.data.roles}`);
         }
         catch (error) {
             if (error.response) {

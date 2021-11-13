@@ -30,7 +30,7 @@ function Buckets() {
 
                 {headers: {'Authorization': `Bearer ${JWT}`}
                 });
-            console.log(result.data);
+            // console.log(result.data);
             setBuckets(result.data);
         }
         catch (error) {
@@ -89,7 +89,7 @@ function Buckets() {
 
     function editOrderItemDetials(item) {
 
-        console.log(`edit ${item}`);
+        // console.log(`edit ${item}`);
         history.push(`/orderItem/${item}`);
       }
 

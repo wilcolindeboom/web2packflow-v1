@@ -61,3 +61,10 @@ nav a:active {
 a:hover {
     color: #ea7e1f;
 }
+
+.user-section {
+    color: #002855;
+   display: inline-flex;
+    align-items: center;
+
+}

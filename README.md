@@ -9,6 +9,12 @@ De orders komen uit een webshop die geïntegreerd is met de [corporate website](
 
 ![screenshot](src/assets/screenshot-applicatie.png)
 
+## Randvoorwaarden
+
+De benodigde JAVA backend moet opgestart zijn om applicatie volledig te laten werken,
+ zie bijgeleverde "file.zip" voor de code en de installatiehandleiding hiervan.
+
+
 ## Applicatie starten
 
 Open de applicatie in Webstorm.
@@ -27,8 +33,22 @@ npm start
 of gebruik de WebStorm knop (npm start). 
 Open [http://localhost:3000](http://localhost:3000/) om in de browser om de applicatie te gebruiken
 
-## Randvoorwaarden
 
-De benodigde JAVA backend moet opgestart zijn om applicatie volledig te laten werken,
- zie bijgeleverde code + installatie handleiding.
+ ## Inloggen
+ 
+Er zijn 2 gebruikers met verschillende rollen beschikbaar om in te loggen:
+
+### rol User
+
+* gebruikersnaam: "user1"   |   wachtwoord: "111111"
+
+Gebruik deze rol om alle delen van de applicatiue te kunnen gebruiken met uitzondering van het aanmaken van gebruikers
+
+
+### rol Admin
+
+* gebruikersnaam: "admin"   |   wachtwoord: "password"
+
+Gebruik deze rol om alle delen van de applicatie te kunnen gebruiken met uitzondering van het aanmaken van gebruikers
+
 

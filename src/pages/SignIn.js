@@ -9,7 +9,7 @@ import './SignIn.css';
 
 function SignIn() {
 
-    const {isAuth, logIn} = useContext(AuthContext);
+    const {isAuth, logIn, roles} = useContext(AuthContext);
     const { handleSubmit, register } = useForm();
     const history = useHistory();
 
