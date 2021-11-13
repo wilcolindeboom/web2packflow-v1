@@ -12,10 +12,10 @@ import Buckets from "./pages/Buckets";
 import Batches from "./pages/Batches";
 import Orders from "./pages/Orders";
 import OrderItemDetails from "./pages/OrderItemDetails";
-import RouteAdmin from "./components/RouteAdmin";
-import RouteUser from "./components/RouteUser";
+import PrivateRouteAdmin from "./components/PrivateRouteAdmin";
+import Users from "./pages/Users";
 function App() {
-  const {isAuth, roles} = useContext(AuthContext);
+  const {isAuth, isAdmin} = useContext(AuthContext);
 
 
   return (
@@ -30,9 +30,7 @@ function App() {
               <Profile />
             </PrivateRoute>
             <PrivateRoute path="/buckets" isAuth={isAuth}>
-              <RouteUser roles={roles}>
               <Buckets/>
-              </RouteUser>
             </PrivateRoute>
             <PrivateRoute path="/batches" isAuth={isAuth}>
               <Batches />
@@ -46,11 +44,12 @@ function App() {
             <Route exact path="/signin" >
               <SignIn />
             </Route>
-            <PrivateRoute exact path="/signup" isAuth={isAuth}>
-              <RouteAdmin roles={roles}>
+            <PrivateRouteAdmin exact path="/signup" isAuth={isAuth} isAdmin={isAdmin} >
               <SignUp />
-              </RouteAdmin>
-            </PrivateRoute>
+            </PrivateRouteAdmin>
+            <PrivateRouteAdmin exact path="/users" isAuth={isAuth} isAdmin={isAdmin} >
+              <Users/>
+            </PrivateRouteAdmin>
           </Switch>
         </div>
       </>

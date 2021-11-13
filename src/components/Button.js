@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-function Button({onClick,children,id}) {
+function Button({onClick,children,id, name}) {
 
 
     return (
 
-                <button className={id === children.toLowerCase()  ? "underline" : ""}
+                <button className={id === name  ? "underline" : ""}
                         type="button" onClick={onClick}>
                 {children}
                 </button>

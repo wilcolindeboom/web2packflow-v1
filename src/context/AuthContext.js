@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {createContext} from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import axios from "axios";
 import {useEffect} from 'react';
@@ -13,6 +13,8 @@ function AuthContextProvider({children}) {
     const [isAuth, toggleIsAuth] = useState(
         {
             isAuth:false,
+            isAdmin:false,
+            IsUser:false,
             user: {
                 email: null,
                 username: null,
@@ -22,18 +24,28 @@ function AuthContextProvider({children}) {
             status:"pending",
         });
 
+    function toggleAdminMode(checked) {
+        localStorage.setItem('adminMode', (checked).toString());
+        toggleIsAuth({...isAuth,
+            adminMode: checked,
+                    });
+    }
+
+
     const history = useHistory();
 
 
     useEffect( () => {
 
         const JWT = localStorage.getItem('token');
+        const adminMode = localStorage.getItem('adminMode') === 'true' ;
         if(JWT) {
             console.log(`token found: ${JWT}`);
+            console.log(`local storage admin mode: ${adminMode}`);
             const decodedToken = jwt_decode(JWT);
             const {sub} = decodedToken;
 
-            getUserData(JWT,sub);
+            getUserData(JWT,sub, adminMode);
         } else {
             toggleIsAuth({
                 ...isAuth,
@@ -55,23 +67,20 @@ function AuthContextProvider({children}) {
     function logIn(JWT) {
         localStorage.setItem('token',JWT);
         const decodedToken = jwt_decode(JWT);
-        console.log(decodedToken);
         const {sub} = decodedToken;
         loginUser(JWT,sub);
 
         async  function loginUser(JWT,id) {
-
-            // console.log("token:" + JWT);
-            // console.log("id:" + id);
-
             try {
                 const result = await axios.get(`http://localhost:8080/api/v1/users/${id}`,
-                // const result = await axios.get(`http://localhost:3000/600/users/${id}`,
                     {headers: {'Authorization': `Bearer ${JWT}`}
                     });
                 toggleIsAuth({
                     ...isAuth,
                     isAuth: true,
+                    isAdmin:  result.data.roles.some((role) => role.name.includes("ROLE_ADMIN")),
+                    isUser: result.data.roles.some((role) => role.name.includes("ROLE_USER")),
+                    adminMode: result.data.roles.some((role) => role.name.includes("ROLE_ADMIN")),
                     user: {
                         email: result.data.email,
                         username: result.data.username,
@@ -79,7 +88,6 @@ function AuthContextProvider({children}) {
                         id: result.data.id
                     },
                     });
-                console.log(`userdata: ${result.data}`);
                 history.push('/buckets');
             }
             catch (error) {
@@ -102,23 +110,19 @@ function AuthContextProvider({children}) {
         }
     }
 
-    console.log(`username: ${isAuth.user.username}`);
-
     const authData = {
         isAuth: isAuth.isAuth,
         logOff:logOff,
-        roles: isAuth.user.roles,
         userName: isAuth.user.username,
+        isAdmin: isAuth.isAdmin,
+        isUser: isAuth.isUser,
+        adminMode: isAuth.adminMode,
+        toggleAdminMode: toggleAdminMode,
         logIn:logIn
     };
 
 
-
-    async  function getUserData(JWT,id) {
-
-        // console.log("token:" + JWT);
-        // console.log("id:" + id);
-
+    async  function getUserData(JWT,id, adminMode) {
         try {
             const result = await axios.get(`http://localhost:8080/api/v1/users/${id}`,
                 {headers: {'Authorization': `Bearer ${JWT}`}
@@ -126,6 +130,9 @@ function AuthContextProvider({children}) {
             toggleIsAuth({
                 ...isAuth,
                 isAuth: true,
+                isAdmin:  result.data.roles.some((role) => role.name.includes("ROLE_ADMIN")),
+                isUser: result.data.roles.some((role) => role.name.includes("ROLE_USER")),
+                adminMode: result.data.roles.some((role) => role.name.includes("ROLE_ADMIN")) && adminMode,
                 user: {
                     email: result.data.email,
                     username: result.data.username,
@@ -134,7 +141,6 @@ function AuthContextProvider({children}) {
                 },
                status: 'done'
             });
-            // console.log(`userdata: ${result.data.roles}`);
         }
         catch (error) {
             if (error.response) {
@@ -155,7 +161,6 @@ function AuthContextProvider({children}) {
         }
 
     }
-
 
     return (
         <AuthContext.Provider value= {authData}>

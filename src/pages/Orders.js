@@ -66,11 +66,6 @@ function Orders() {
     return (
         <>
                 <div className="menu-bar">
-                <div className="hidden">
-                    <Button  id="" onClick={() => console.log("menuitem clicked")}>
-                        menuItem
-                    </Button>
-                </div>
                     <div className="filter">
                         <RiFilter2Fill/>
                         <input
@@ -80,7 +75,6 @@ function Orders() {
                             placeholder="filter op ordernummer..."
                             onChange={(event) => filterOrders(event)}
                         />
-
                     </div>
                 </div>
 
