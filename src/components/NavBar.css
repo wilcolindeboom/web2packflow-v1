@@ -48,16 +48,6 @@ nav a:active {
     cursor: pointer;
 }
 
-.menu button:focus,
-.underline {
-    text-decoration:underline
-}
-
-.underline  {
-    text-decoration:underline
-}
-
-
 a:hover {
     color: #ea7e1f;
 }

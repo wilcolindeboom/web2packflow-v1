@@ -40,8 +40,6 @@ function AuthContextProvider({children}) {
         const JWT = localStorage.getItem('token');
         const adminMode = localStorage.getItem('adminMode') === 'true' ;
         if(JWT) {
-            console.log(`token found: ${JWT}`);
-            console.log(`local storage admin mode: ${adminMode}`);
             const decodedToken = jwt_decode(JWT);
             const {sub} = decodedToken;
 
