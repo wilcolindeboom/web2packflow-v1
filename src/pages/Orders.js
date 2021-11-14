@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import moment from 'moment';
 import './Orders.css';
@@ -11,6 +12,7 @@ function Orders() {
     const JWT =  localStorage.getItem("token");
     const [orders,setOrders] = useState([]);
     const [ordersFiltered,setOrdersFiltered] = useState([]);
+    const history = useHistory();
 
 
     useEffect( () => {
@@ -90,13 +92,12 @@ function Orders() {
                     <div className="orders-container" key={order.sourceOrderId}>
                         <div className="order-attributes" id="left">
                             <div>{order.sourceOrderId}</div>
-                            <button type="button" onClick={()=> console.log(`edit order ${order.sourceOrderId}`)}>
+                            <button  className="hidden" type="button" onClick={()=> console.log(`edit order ${order.sourceOrderId}`)}>
                                 edit
                             </button>
                         </div>
                         <div className="header"  id="header">
                             <span> {order.orderItems.length === 1 ? order.orderItems.length + " orderregel" : order.orderItems.length  + " orderregels"}</span>
-                            <span>tekst</span>
                         </div>
 
                         <div className="order-lines"  id="content">
@@ -117,7 +118,7 @@ function Orders() {
                                 {order.orderItems.length && order.orderItems.map( orderItem =>
                                     <tbody>
 
-                                    <tr onClick={() => console.log(`edit ${orderItem.sourceItemId}`)} id="order-line" key ={orderItem.sourceItemId}>
+                                    <tr onClick={() => history.push(`/orderItem/${orderItem.sourceItemId}`)} id="order-line" key ={orderItem.sourceItemId}>
                                         <td>{orderItem.sourceItemId}</td>
                                         <td>{orderItem.quantity}</td>
                                         <td>{orderItem.productGroup.description}</td>

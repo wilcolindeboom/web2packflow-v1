@@ -103,8 +103,6 @@ function OrderItemDetails() {
                         </button>
                     </div>
                     <div className="header"  id="header">
-                        <span>tekst</span>
-                        <span>tekst</span>
                     </div>
                     <div className="order-item-details"  id="content">
                         {orderItemDetail.productGroup &&

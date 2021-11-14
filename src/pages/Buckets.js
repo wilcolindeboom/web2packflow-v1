@@ -87,12 +87,6 @@ function Buckets() {
 
     }
 
-    function editOrderItemDetials(item) {
-
-        // console.log(`edit ${item}`);
-        history.push(`/orderItem/${item}`);
-      }
-
     return (
         <>
                      {buckets.length !== 0
@@ -126,7 +120,7 @@ function Buckets() {
                                         {bucket.orderItems.length && bucket.orderItems.map( orderItem =>
                                         <tbody>
 
-                                        <tr onClick={() => editOrderItemDetials(orderItem.sourceItemId) } id="order-line" key ={orderItem.sourceItemId}>
+                                        <tr onClick={() => history.push(`/orderItem/${orderItem.sourceItemId}`)} id="order-line" key ={orderItem.sourceItemId}>
                                         <td>{orderItem.sourceItemId}</td>
                                         <td>{orderItem.quantity}</td>
                                         </tr>
