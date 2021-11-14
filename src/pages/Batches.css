@@ -31,7 +31,7 @@
 }
 
 #batch-left {
-    background-color:#e5cfc8;
+    background-color:var(--main-bg-color);
     font-size: 24px;
     grid-area: left;
     display: flex;

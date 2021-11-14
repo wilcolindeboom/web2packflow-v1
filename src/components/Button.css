@@ -1,0 +1,24 @@
+
+
+button {
+    border-radius: 4px;
+    border: none;
+    padding: 8px 16px;
+    background-color: #32b5e1;
+    color: white;
+    font-weight: bold;
+}
+
+button + button {
+    margin-left: 8px;
+}
+
+button  {
+    border-radius: 15px;
+    margin: 10px;
+}
+
+button:hover {
+    color: #0b2855;
+    cursor: pointer;
+}

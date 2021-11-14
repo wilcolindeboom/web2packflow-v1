@@ -5,15 +5,10 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import './Batches.css';
 
-
-
 function Batches() {
-
-    const history = useHistory();
 
     const JWT =  localStorage.getItem("token");
     const [batches,setBatches] = useState([]);
-
 
     useEffect( () => {
         getBatches();
