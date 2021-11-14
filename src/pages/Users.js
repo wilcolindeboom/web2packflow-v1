@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import { useHistory} from "react-router-dom";
 import axios from "axios";
-import moment from 'moment';
-import './Orders.css';
+import './Users.css';
 import Button from "../components/Button";
 import {RiFilter2Fill} from 'react-icons/ri';
 
@@ -11,6 +11,7 @@ function Users() {
     const JWT =  localStorage.getItem("token");
     const [users,setUsers] = useState([]);
     const [usersFiltered,setUsersFiltered] = useState([]);
+    const history = useHistory();
 
 
 
@@ -57,13 +58,13 @@ function Users() {
 
 
 
-    function filterOrders(event) {
+    function filterUsers(event) {
         const filter = event.target.value;
-        const filteredOrders = users.filter((order) => order.sourceOrderId.toLowerCase().includes(filter.toLowerCase()));
+        const filteredUsers = users.filter((user) => user.username.toLowerCase().includes(filter.toLowerCase()));
         if (filter) {
-            setUsersFiltered(filteredOrders);
+            setUsersFiltered(filteredUsers);
             console.log(`filtered: ${filter}`);
-            console.log(`filteredOrders: ${filteredOrders}`);
+            console.log(`filteredUsers: ${filteredUsers}`);
         } else {
             setUsersFiltered(users);
         }
@@ -77,67 +78,47 @@ function Users() {
             <h1>Overzicht gebruikers lijst</h1>
 
                 <div className="menu-bar">
+                    <div className="hidden">
+                        <Button  id="" onClick={() => console.log("menuitem clicked")}>
+                            menuItem
+                        </Button>
+                    </div>
                        <div className="filter">
                         <RiFilter2Fill/>
                         <input
                             className="filter-field"
                             type="text"
                             name="search"
-                            placeholder="filter op ordernummer..."
-                            onChange={(event) => filterOrders(event)}
+                            placeholder="filter op gebruikersnaam..."
+                            onChange={(event) => filterUsers(event)}
                         />
                     </div>
                 </div>
 
+                {users.length !== 0 ?
 
-                {users.length !== 0
-                    ? usersFiltered.map(order =>
+                <table className="table-users">
+                    <thead>
+                    <tr>
+                    <th>gebruikersnaam</th>
+                    <th>email</th>
+                        <th>type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                    <div className="users-container" key={order.sourceOrderId}>
-                        {/*<div className="order-attributes" id="left">*/}
-                        {/*    <div>{order.sourceOrderId}</div>*/}
-                        {/*    <button type="button" onClick={()=> console.log(`edit order ${order.sourceOrderId}`)}>*/}
-                        {/*        edit*/}
-                        {/*    </button>*/}
-                        {/*</div>*/}
-                        {/*<div className="header"  id="header">*/}
-                        {/*    <span> {order.orderItems.length === 1 ? order.orderItems.length + " orderregel" : order.orderItems.length  + " orderregels"}</span>*/}
-                        {/*    <span>tekst</span>*/}
-                        {/*</div>*/}
+                    {usersFiltered.map(user =>
+                     <tr onClick={() =>
+                         history.push(`/profile/${user.username}`)} id="user" key ={user.id}>
+                    <td id="username">{user.username}</td>
+                    <td>{user.email}</td>
+                    <td>{ user.roles.some((role) => role.name.includes("ROLE_ADMIN")) ? "administrator" : "gebruiker"}  </td>
+                    </tr>
+                        )}
+                    </tbody>
+                    </table>
 
-                        {/*<div className="order-lines"  id="content">*/}
 
-                        {/*    {order.orderItems.length &&*/}
-
-                        {/*    <table className="table">*/}
-                        {/*        <thead>*/}
-                        {/*        <tr>*/}
-                        {/*            <th>item</th>*/}
-                        {/*            <th>aantal</th>*/}
-                        {/*            <th>product</th>*/}
-                        {/*            <th>materiaal</th>*/}
-                        {/*            <th>afwerking</th>*/}
-                        {/*            <th>verzending</th>*/}
-                        {/*        </tr>*/}
-                        {/*        </thead>*/}
-                        {/*        {order.orderItems.length && order.orderItems.map( orderItem =>*/}
-                        {/*            <tbody>*/}
-
-                        {/*            <tr onClick={() => console.log(`edit ${orderItem.sourceItemId}`)} id="order-line" key ={orderItem.sourceItemId}>*/}
-                        {/*                <td>{orderItem.sourceItemId}</td>*/}
-                        {/*                <td>{orderItem.quantity}</td>*/}
-                        {/*                <td>{orderItem.productGroup.description}</td>*/}
-                        {/*                <td>{orderItem.substrateId}</td>*/}
-                        {/*                <td>{orderItem.finishName}</td>*/}
-                        {/*                <td>{moment(orderItem.shippingDate).format('DD-MM-YYYY')}</td>*/}
-                        {/*            </tr>*/}
-                        {/*            </tbody>*/}
-                        {/*        )}*/}
-                        {/*    </table>*/}
-                        {/*    }*/}
-                        {/*</div>*/}
-                    </div>
-                )
                     : <h2>Geen gebruikers om te tonen...</h2>
                 }
         </>

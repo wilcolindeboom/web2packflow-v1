@@ -46,3 +46,35 @@
     cursor: pointer;
     color: #002855;
 }
+
+
+.table-users  {
+    color: #002855;
+    border-collapse: collapse;
+    width: 100%;
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+    text-align:left;
+}
+
+.table-users th {
+    padding: 1em;
+    background-color: #32b5e1;
+    border-bottom: 2px solid #002855;
+
+}
+
+.table-users td {
+    padding: 1em;
+    background-color: #e5cfc8;
+    border-bottom: 2px solid #002855;
+}
+
+#username:hover{
+    color: red;
+    font-style: oblique;
+    cursor: pointer;
+}
+

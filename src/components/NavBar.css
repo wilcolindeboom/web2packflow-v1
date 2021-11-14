@@ -77,7 +77,7 @@ a:hover {
     width: 50px;
 }
 
-input[type="checkbox"] {
+nav input[type="checkbox"] {
      position: relative;
      display: inline-block;
      width: 40px;
@@ -90,11 +90,11 @@ input[type="checkbox"] {
 
  }
 
-input:checked[type="checkbox"] {
+nav input:checked[type="checkbox"] {
     background: #32b5e1;
 }
 
-input[type="checkbox"]:before {
+nav input[type="checkbox"]:before {
     content:'';
     position: absolute;
     width: 20px;
@@ -106,7 +106,7 @@ input[type="checkbox"]:before {
     transition: .1s;
 }
 
-input:checked[type="checkbox"]:before {
+nav input:checked[type="checkbox"]:before {
    left:20px;
 }
 

@@ -84,7 +84,7 @@ function NavBar() {
                   <span>modus</span>
               </div>
               }
-              <Link to="/profile">{userName}</Link>
+              <Link to={`/profile/${userName}`}>{userName}</Link>
               <Button onClick={() => handleLogOff()}>
                   Log uit
               </Button>

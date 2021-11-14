@@ -26,7 +26,7 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <PrivateRoute path="/profile" isAuth={isAuth}>
+            <PrivateRoute path="/profile/:username" isAuth={isAuth}>
               <Profile />
             </PrivateRoute>
             <PrivateRoute path="/buckets" isAuth={isAuth}>

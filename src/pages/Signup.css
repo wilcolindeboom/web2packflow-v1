@@ -1,0 +1,22 @@
+.signup-form {
+    background-color:#e5cfc8;
+    font-size: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+
+.signup-form fieldset {
+    display: flex;
+    flex-direction: column;
+    border:0;
+}
+
+.signup-form input {
+    /*width: 50px;*/
+}
