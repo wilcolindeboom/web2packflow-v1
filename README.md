@@ -42,13 +42,13 @@ Er zijn 2 gebruikers met verschillende rollen beschikbaar om in te loggen:
 
 * gebruikersnaam: "user1"   |   wachtwoord: "111111"
 
-Gebruik deze rol om alle delen van de applicatie te kunnen gebruiken met uitzondering van het aanmaken van gebruikers
+Gebruik deze rol om het "productie gedeelte" van de applicatie te kunnen gebruiken.
 
 
 ### rol Admin
 
 * gebruikersnaam: "admin"   |   wachtwoord: "password"
 
-Gebruik deze rol om alle delen van de applicatie te kunnen gebruiken met uitzondering van het aanmaken van gebruikers
+Gebruik deze rol om ook het "beheers gedeelte" van de applicatie te kunnen gebruiken.
 
 
