@@ -12,7 +12,7 @@ De orders komen uit een webshop die geïntegreerd is met de [corporate website](
 ## Randvoorwaarden
 
 De benodigde JAVA backend moet opgestart zijn om applicatie volledig te laten werken,
- zie bijgeleverde "file.zip" voor de code en de installatiehandleiding hiervan.
+ zie bijgeleverde "backend.zip" voor de code en de installatiehandleiding hiervan.
 
 
 ## Applicatie starten
