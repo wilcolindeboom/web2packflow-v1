@@ -18,5 +18,10 @@
 }
 
 .signup-form input {
-    /*width: 50px;*/
+    width: 150px;
+}
+
+.error {
+    color: red;
+    font-style: italic;
 }

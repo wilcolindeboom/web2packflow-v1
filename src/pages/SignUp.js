@@ -7,7 +7,7 @@ import './Signup.css';
 
 function SignUp() {
 
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register,  formState: { errors }  } = useForm({mode:"onTouched"});
     const {logIn} = useContext(AuthContext);
     const JWT =  localStorage.getItem("token");
 
@@ -58,6 +58,9 @@ function SignUp() {
                   id="details-username"
                   {...register("username", {required: true})}
               />
+              {errors.username && errors.username.type === "required" && (
+                  <span class="error">gebruikersnaam ontbreekt!</span>
+              )}
           </label>
           <label htmlFor="details-password">
               wachtwoord:
@@ -66,17 +69,23 @@ function SignUp() {
                   id="details-password"
                   {...register("password", {required: true})}
               />
+              {errors.password && errors.password.type === "required" && (
+                  <span class="error">wachtwoord ontbreekt!</span>
+              )}
           </label>
           <label htmlFor="details-email">
               email:
               <input
                   type="email"
                   id="details-email"
-                  maxLength="50"
                   {...register("email", {required: true})}
               />
+              {errors.email && errors.email.type === "required" && (
+                  <span class="error">emailadres ontbreekt!</span>
+              )}
           </label>
           </fieldset>
+
           <fieldset>
               <p> <strong>gebruikersrollen</strong></p>
           <label htmlFor="details-role">
@@ -97,6 +106,10 @@ function SignUp() {
               />
               administrator
           </label>
+              {errors.role && errors.role.type === "required" && (
+                  <p class="error">geen rol gekozen!</p>
+              )}
+
           </fieldset>
           <button
               type="submit"
